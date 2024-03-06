@@ -41,6 +41,6 @@
     "baseUrl": "./"
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules/**"],
+  "exclude": ["node_modules/**", "src/**/*.spec.ts", "coverage/**", "build/**", "dist/**", "src/types/**", "src/**/*.d.ts"],
   "compileOnSave": false
 }
