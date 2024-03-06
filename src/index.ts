@@ -1,5 +1,10 @@
-const world = 'world';
+import dkdates from './dates';
+import { DateType, DateSegment, DateFormat } from './dates.types';
 
-export function hello(who: string = world): string {
-  return `Hello ${who}! `;
+
+export {
+    dkdates,
+    DateType,
+    DateSegment,
+    DateFormat
 }
