@@ -129,13 +129,4 @@ describe('diamond-kinetics-date-lib', () => {
       expect(service.addDate(DateSegment.YEAR, '2024-01-24', 2)).toEqual(new Date('2026-01-24'));
     });
   });
-
-  //   it('should test', () => {
-  //     console.log(service.fetchDayJS().year());
-  //     console.log(service.fetchFormattedDate(DateFormat.YEAR, '2024-01-24'));
-  //     console.log(service.fetchDayJS().year(2023).month(5).date(2).hour(0).minute(0).second(0).millisecond(0).toDate());
-
-  //     console.log('--', service.fetchToDate('2023-05-02'));
-  //     expect(service.fetchDayJS()).toBeTruthy();
-  //   });
 });

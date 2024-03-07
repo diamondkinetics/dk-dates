@@ -96,6 +96,26 @@ function isSameDate(date: DateType, compareDate?: DateType): boolean {
   return fetchUTC(compareDate).isSame(date);
 }
 
+// function setTimeStamp(
+//   year: number,
+//   month: number,
+//   date: number,
+//   hour: number,
+//   minute: number,
+//   second: number,
+//   millisecond: number
+// ) {
+//   return fetchUTC()
+//     .year(year)
+//     .month(month)
+//     .date(date)
+//     .hour(hour)
+//     .minute(minute)
+//     .second(second)
+//     .millisecond(millisecond)
+//     .toDate();
+// }
+
 export default {
   fetchDayJS,
   fetchUTC,
