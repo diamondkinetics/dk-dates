@@ -1,16 +1,23 @@
 {
   "name": "@diamondkinetics/dk-dates",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Shared Date utility for DK Projects",
-  "main": "index.ts",
+  "repository": "https://github.com/diamondkinetics/dk-dates",
+  "main": "build/main/index.js",
+  "typings": "build/main/index.d.ts",
+  "module": "build/module/index.js",
   "scripts": {
-    "build": "npx tsc",
+    "build:main": "tsc -p tsconfig.json",
+    "build:module": "tsc -p tsconfig.module.json",
+    "build:all": "npm-run-all build:main build:module",
     "lint": "npx eslint src --ext .ts",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "test:ci": "jest"
   },
   "author": "Ron de las Alas",
   "license": "MIT",
   "dependencies": {
+    "@diamondkinetics/dk-dates": "^0.2.0",
     "dayjs": "^1.11.10"
   },
   "devDependencies": {
