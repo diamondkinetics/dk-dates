@@ -13,9 +13,9 @@ DK dates is a libary wrapper around DayJS that includes helper functions for com
 ```
 import { dkdates, DateType, DateFormat, DateSegment } from '@diamondkinetics/dk-dates';
 
-dkdates.fetchDayJS();
+dkdates.getDayJS();
 dkdates.isAfter(date1, date2);
-dkdates.fetchFormattedDate(DateFormat.YEAR, date)
+dkdates.getFormattedDate(DateFormat.YEAR, date)
 ...
 ...
 ```
@@ -54,5 +54,3 @@ All code changes should be made in `dates.ts`. And of course add tests in `dates
 
 #### Releasing to NPM
 A new release is created when we merge to `main.` The `semantic-release` library will handle versioning, tagging and release back to GitHub and to NPM.
-
-
