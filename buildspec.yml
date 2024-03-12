@@ -17,7 +17,7 @@ phases:
       - npm run build:all
   post_build:
     commands:
-      - npx semantic-release --branches main
+      - npx semantic-release --dry-run
 artifacts:
   files:
     - build/**/*
