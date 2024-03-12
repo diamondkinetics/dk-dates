@@ -14,7 +14,7 @@ dateLib.extend(duration);
  * @param date optional
  * @returns DayJS function
  */
-function fetchDayJS(date?: DateType): Dayjs {
+function getDayJS(date?: DateType): Dayjs {
   return dateLib(date);
 }
 
@@ -23,7 +23,7 @@ function fetchDayJS(date?: DateType): Dayjs {
  * @param date optional
  * @returns UTC extended DayJS function
  */
-function fetchUTC(date?: DateType): Dayjs {
+function getUTC(date?: DateType): Dayjs {
   return dateLib.utc(date);
 }
 
@@ -34,103 +34,83 @@ function fetchUTC(date?: DateType): Dayjs {
  * @returns formatted date string
  */
 
-function fetchFormattedDate(format: DateFormat, date?: string): string {
+function getFormattedDate(format: DateFormat, date?: string): string {
   return dateLib(date).format(format);
 }
 
 function getISOString(date?: DateType): string {
-  return fetchUTC(date).toISOString();
+  return getUTC(date).toISOString();
 }
 
 /* The following two functions return the same result */
 function getApiDateTimeString(): string {
-  return fetchUTC().toISOString().slice(0, -1);
+  return getUTC().toISOString().slice(0, -1);
 }
 
 function getSubstring(): string {
-  return fetchUTC().toISOString().substring(0, 23);
+  return getUTC().toISOString().substring(0, 23);
 }
 
 function addDate(segment: DateSegment, date?: DateType, amount = 1): DateType {
-  return fetchUTC(date).add(amount, segment).toDate();
+  return getUTC(date).add(amount, segment).toDate();
 }
 
 function subtractDate(segment: DateSegment, date?: DateType, amount = 1): DateType {
-  return fetchUTC(date).subtract(amount, segment).toDate();
+  return getUTC(date).subtract(amount, segment).toDate();
 }
 
-function fetchIsBefore(beforeDate: DateType, compareDate?: DateType): boolean {
-  return fetchUTC(compareDate).isBefore(beforeDate);
+function isBefore(isBefore: DateType, compareDate?: DateType): boolean {
+  return getUTC(compareDate).isBefore(isBefore);
 }
 
-function fetchIsAfter(afterDate: DateType, compareDate?: DateType): boolean {
-  return fetchUTC(compareDate).isAfter(afterDate);
+function isAfter(isAfter: DateType, compareDate?: DateType): boolean {
+  return getUTC(compareDate).isAfter(isAfter);
 }
 
-function fetchIsBetween(afterDate: DateType, beforeDate: DateType, compareDate?: DateType): boolean {
-  return fetchIsAfter(afterDate, compareDate) && fetchIsBefore(beforeDate, compareDate);
+function getIsBetween(afterDate: DateType, beforeDate: DateType, compareDate?: DateType): boolean {
+  return isAfter(afterDate, compareDate) && isBefore(beforeDate, compareDate);
 }
 
 function isValidDate(date?: DateType): boolean {
-  return fetchUTC(date).isValid();
+  return getUTC(date).isValid();
 }
 
 /* returns a UNIX timestamp */
-function fetchValueOf(date?: DateType): number {
-  return fetchDayJS(date).valueOf();
+function getValueOf(date?: DateType): number {
+  return getDayJS(date).valueOf();
 }
 
-function fetchToDate(date?: DateType): DateType {
-  return fetchDayJS(date).toDate();
+function getToDate(date?: DateType): DateType {
+  return getDayJS(date).toDate();
 }
 
 function isSameMonth(compareDate: DateType, date: DateType): boolean {
-  return fetchUTC(compareDate).isSame(date, DateSegment.MONTH);
+  return getUTC(compareDate).isSame(date, DateSegment.MONTH);
 }
 
 function isSameYear(compareDate: DateType, date: DateType): boolean {
-  return fetchUTC(compareDate).isSame(date, DateSegment.YEAR);
+  return getUTC(compareDate).isSame(date, DateSegment.YEAR);
 }
 
 function isSameDate(date: DateType, compareDate?: DateType): boolean {
-  return fetchUTC(compareDate).isSame(date);
+  return getUTC(compareDate).isSame(date);
 }
 
-// function setTimeStamp(
-//   year: number,
-//   month: number,
-//   date: number,
-//   hour: number,
-//   minute: number,
-//   second: number,
-//   millisecond: number
-// ) {
-//   return fetchUTC()
-//     .year(year)
-//     .month(month)
-//     .date(date)
-//     .hour(hour)
-//     .minute(minute)
-//     .second(second)
-//     .millisecond(millisecond)
-//     .toDate();
-// }
-
 export default {
-  fetchDayJS,
-  fetchUTC,
-  fetchFormattedDate,
+  getDayJS,
+  getUTC,
+  getFormattedDate,
   getISOString,
   getApiDateTimeString,
   getSubstring,
+  getIsBetween,
+  getValueOf,
+  getToDate,
   addDate,
   subtractDate,
-  fetchIsBefore,
-  fetchIsAfter,
-  fetchIsBetween,
+  isBefore,
+  isAfter,
   isValidDate,
-  fetchValueOf,
-  fetchToDate,
   isSameMonth,
   isSameDate,
   isSameYear,

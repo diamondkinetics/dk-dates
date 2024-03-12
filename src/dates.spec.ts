@@ -6,34 +6,34 @@ import { DateFormat, DateSegment } from './dates.types';
 describe('diamond-kinetics-date-lib', () => {
   describe('Base Functions', () => {
     it('should return a dayjs instance ', () => {
-      expect(service.fetchDayJS()).toBeTruthy();
+      expect(service.getDayJS()).toBeTruthy();
     });
 
     it('should return a dayjs UTC instance', () => {
-      expect(service.fetchUTC()).toBeTruthy();
+      expect(service.getUTC()).toBeTruthy();
     });
   });
 
   describe('Formatted Dates', () => {
     it('should return formatted date ', () => {
-      expect(service.fetchFormattedDate(DateFormat.FULL_DASH, '2024-01-24')).toBe('01-24-2024');
-      expect(service.fetchFormattedDate(DateFormat.FULL_SLASH, '2024-01-24')).toBe('1/24/2024');
-      expect(service.fetchFormattedDate(DateFormat.YEAR, '2024-01-24')).toBe('2024');
-      expect(service.fetchFormattedDate(DateFormat.YEAR_REV, '2024-01-24')).toBe('2024-01-24');
+      expect(service.getFormattedDate(DateFormat.FULL_DASH, '2024-01-24')).toBe('01-24-2024');
+      expect(service.getFormattedDate(DateFormat.FULL_SLASH, '2024-01-24')).toBe('1/24/2024');
+      expect(service.getFormattedDate(DateFormat.YEAR, '2024-01-24')).toBe('2024');
+      expect(service.getFormattedDate(DateFormat.YEAR_REV, '2024-01-24')).toBe('2024-01-24');
     });
 
     it('should return formatted Month ', () => {
-      expect(service.fetchFormattedDate(DateFormat.MONTH_NUM, '2024-01-24')).toBe('01');
-      expect(service.fetchFormattedDate(DateFormat.MONTH_ABB, '2024-01-24')).toBe('Jan');
-      expect(service.fetchFormattedDate(DateFormat.MONTH_FULL, '2024-01-24')).toBe('January');
-      expect(service.fetchFormattedDate(DateFormat.MONTH_ORD, '2024-01-24')).toBe('January 24th');
+      expect(service.getFormattedDate(DateFormat.MONTH_NUM, '2024-01-24')).toBe('01');
+      expect(service.getFormattedDate(DateFormat.MONTH_ABB, '2024-01-24')).toBe('Jan');
+      expect(service.getFormattedDate(DateFormat.MONTH_FULL, '2024-01-24')).toBe('January');
+      expect(service.getFormattedDate(DateFormat.MONTH_ORD, '2024-01-24')).toBe('January 24th');
     });
 
     it('should return ordinal formatted days ', () => {
-      expect(service.fetchFormattedDate(DateFormat.ORDINAL, '2024-01-01')).toContain('st');
-      expect(service.fetchFormattedDate(DateFormat.ORDINAL, '2024-01-02')).toContain('nd');
-      expect(service.fetchFormattedDate(DateFormat.ORDINAL, '2024-01-03')).toContain('rd');
-      expect(service.fetchFormattedDate(DateFormat.ORDINAL, '2024-01-24')).toContain('th');
+      expect(service.getFormattedDate(DateFormat.ORDINAL, '2024-01-01')).toContain('st');
+      expect(service.getFormattedDate(DateFormat.ORDINAL, '2024-01-02')).toContain('nd');
+      expect(service.getFormattedDate(DateFormat.ORDINAL, '2024-01-03')).toContain('rd');
+      expect(service.getFormattedDate(DateFormat.ORDINAL, '2024-01-24')).toContain('th');
     });
 
     it('should return API formatted datetime string ', () => {
@@ -48,27 +48,27 @@ describe('diamond-kinetics-date-lib', () => {
 
   describe('Before and After', () => {
     it('evaluate if date is isBefore ', () => {
-      expect(service.fetchIsBefore('2024-01-24', '2024-01-25')).toBe(false);
-      expect(service.fetchIsBefore('2024-01-25', '2024-01-24')).toBe(true);
-      expect(service.fetchIsBefore('2024-01-25')).toBe(false);
+      expect(service.isBefore('2024-01-24', '2024-01-25')).toBe(false);
+      expect(service.isBefore('2024-01-25', '2024-01-24')).toBe(true);
+      expect(service.isBefore('2024-01-25')).toBe(false);
     });
 
     it('evaluate if date is isAfter ', () => {
-      expect(service.fetchIsAfter('2024-01-24', '2024-01-25')).toBe(true);
-      expect(service.fetchIsAfter('2024-01-24', '2024-01-23')).toBe(false);
+      expect(service.isAfter('2024-01-24', '2024-01-25')).toBe(true);
+      expect(service.isAfter('2024-01-24', '2024-01-23')).toBe(false);
     });
 
     it('should return true if the date is between', () => {
-      expect(service.fetchIsBetween('2024-01-23', '2024-01-01')).toBe(false);
+      expect(service.getIsBetween('2024-01-23', '2024-01-01')).toBe(false);
     });
 
     it('should return false if the date out of range', () => {
-      expect(service.fetchIsBetween(service.fetchDayJS(), '2024-03-10', '2024-03-24')).toBe(false);
+      expect(service.getIsBetween(service.getDayJS(), '2024-03-10', '2024-03-24')).toBe(false);
     });
   });
 
   it('should return UNIX timestamp ', () => {
-    const timestamp = service.fetchValueOf();
+    const timestamp = service.getValueOf();
     expect(timestamp).toBeDefined();
     expect(timestamp).not.toBeNull();
     expect(typeof timestamp).toBe('number');
@@ -76,15 +76,15 @@ describe('diamond-kinetics-date-lib', () => {
   });
 
   it('should return toDate value', () => {
-    expect(service.fetchToDate(new Date('204-03-04'))).toEqual(new Date('204-03-04'));
+    expect(service.getToDate(new Date('204-03-04'))).toEqual(new Date('204-03-04'));
   });
 
   it('should return true if its the same month', () => {
-    expect(service.isSameMonth(new Date('2024-01-15'), service.fetchDayJS('2024-01-10'))).toBe(true);
+    expect(service.isSameMonth(new Date('2024-01-15'), service.getDayJS('2024-01-10'))).toBe(true);
   });
 
   //   it('should return true if the dates are the same ', () => {
-  //     expect(service.isSameDate(new Date('2024-01-15'), service.fetchDayJS('2024-01-15'))).toBe(true);
+  //     expect(service.isSameDate(new Date('2024-01-15'), service.getDayJS('2024-01-15'))).toBe(true);
   //   });
 
   it('should return false if the date cant be parsed', () => {
