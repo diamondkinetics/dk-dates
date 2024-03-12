@@ -1,6 +1,6 @@
 {
   "name": "@diamondkinetics/dk-dates",
-  "version": "0.2.0",
+  "version": "1.0.1",
   "description": "Shared Date utility for DK Projects",
   "repository": "https://github.com/diamondkinetics/dk-dates",
   "main": "build/main/index.js",
@@ -17,7 +17,6 @@
   "author": "Ron de las Alas",
   "license": "MIT",
   "dependencies": {
-    "@diamondkinetics/dk-dates": "^0.2.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "dayjs": "^1.11.10"
