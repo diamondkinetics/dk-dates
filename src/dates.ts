@@ -38,14 +38,32 @@ function getFormattedDate(format: DateFormat, date?: string): string {
   return dateLib(date).format(format);
 }
 
+/**
+ *
+ * @param date optional
+ * @returns ISO formatted date string
+ */
+
 function getISOString(date?: DateType): string {
   return getUTC(date).toISOString();
 }
 
+/**
+ *
+ * @param date optional
+ * @returns formatted date string for API calls
+ */
+
 /* The following two functions return the same result */
-function getApiDateTimeString(): string {
-  return getUTC().toISOString().slice(0, -1);
+function getApiDateTimeString(date?: DateType): string {
+  return getUTC(date).toISOString().slice(0, -1);
 }
+
+/**
+ *
+ * @param date optional
+ * @returns formatted date string for API calls
+ */
 
 function getSubstring(): string {
   return getUTC().toISOString().substring(0, 23);
