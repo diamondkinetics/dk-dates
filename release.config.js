@@ -72,13 +72,5 @@ module.exports = {
       },
     ],
     "@semantic-release/github",
-    [
-        "@semantic-release/exec",
-        {
-            prepareCmd: "set-version ${nextRelease.version}",
-            publishCmd: "publish-package",
-        },
-    ]
-
   ],
 };
